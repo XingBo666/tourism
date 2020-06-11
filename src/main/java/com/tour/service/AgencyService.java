@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -44,5 +45,56 @@ public class AgencyService {
 
 
         return agencyPageInfo;
+    }
+
+    //  新增会员的方法
+    public Boolean add(Agency agency) {
+        if (StringUtils.isEmpty(agency.getEmail() ) || StringUtils.isEmpty(agency.getName()) || StringUtils.isEmpty(agency.getPhone())){
+            return null;
+        }
+        agency.setId(null);
+        agency.setCreateTime(new Date());
+        agency.setLevel(2);
+        agency.setDelFlag(0);
+
+        try {
+            agencyMapper.insert(agency);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean update(Agency agency) {
+        if (agency.getId() == null ||StringUtils.isEmpty(agency.getEmail() ) || StringUtils.isEmpty(agency.getName()) || StringUtils.isEmpty(agency.getPhone())){
+            return null;
+        }
+
+        try{
+            agencyMapper.updateByPrimaryKeySelective(agency);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+
+
+    }
+
+    public Boolean delete(Long id) {
+        if (id == null){
+            return null;
+        }
+        try {
+            //  先查询
+            Agency agency = agencyMapper.selectByPrimaryKey(id);
+            agency.setDelFlag(1);
+            agencyMapper.updateByPrimaryKeySelective(agency);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
