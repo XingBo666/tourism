@@ -6,6 +6,7 @@ import com.tour.entity.Agency;
 import com.tour.mapper.AgencyMapper;
 import com.tour.vo.AgencyPageVo;
 import com.tour.vo.LoginVo;
+import com.tour.vo.RegistryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -119,6 +120,27 @@ public class AgencyService {
 
         return agencies.get(0);
 
+
+    }
+
+    //  会员的注册功能
+    public Boolean registry(RegistryVo vo) {
+        Agency agency = new Agency();
+        agency.setNickName(vo.getNickName());
+        agency.setPassword(vo.getPassword());
+
+        agency.setName(vo.getNickName());
+        agency.setLevel(2);
+        agency.setDelFlag(0);
+        agency.setCreateTime(new Date());
+
+        try {
+            agencyMapper.insert(agency);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
 
     }
 }

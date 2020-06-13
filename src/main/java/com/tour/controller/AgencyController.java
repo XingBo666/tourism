@@ -5,6 +5,7 @@ import com.tour.entity.Agency;
 import com.tour.service.AgencyService;
 import com.tour.vo.AgencyPageVo;
 import com.tour.vo.LoginVo;
+import com.tour.vo.RegistryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -76,5 +77,15 @@ public class AgencyController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(agency);
+    }
+
+    //  会员注册功能
+    @PostMapping("registry")
+    public ResponseEntity<Boolean> registry(RegistryVo vo) {
+        Boolean bool = agencyService.registry(vo);
+        if (bool == null){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(bool);
     }
 }
