@@ -24,4 +24,6 @@ public class Term {
     private Long createId;
 
     private String createName;
+
+    private Integer status;
 }

@@ -5,8 +5,10 @@ import com.github.pagehelper.PageInfo;
 import com.tour.entity.Agency;
 import com.tour.mapper.AgencyMapper;
 import com.tour.vo.AgencyPageVo;
+import com.tour.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -20,7 +22,7 @@ public class AgencyService {
     AgencyMapper agencyMapper;
 
     public PageInfo<Agency> list(AgencyPageVo vo) {
-        PageHelper.startPage(vo.getPageNo(),vo.getPageSize());
+
         Example example = new Example(Agency.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("delFlag",0);
@@ -39,6 +41,7 @@ public class AgencyService {
             criteria.andEqualTo("sex",vo.getSex());
         }
 
+        PageHelper.startPage(vo.getPageNo(),vo.getPageSize());
         List<Agency> agencies = agencyMapper.selectByExample(example);
 
         PageInfo<Agency> agencyPageInfo = new PageInfo<>(agencies);
@@ -52,6 +55,7 @@ public class AgencyService {
         if (StringUtils.isEmpty(agency.getEmail() ) || StringUtils.isEmpty(agency.getName()) || StringUtils.isEmpty(agency.getPhone())){
             return null;
         }
+        agency.setPassword("123456");
         agency.setId(null);
         agency.setCreateTime(new Date());
         agency.setLevel(2);
@@ -96,5 +100,25 @@ public class AgencyService {
             return false;
         }
         return true;
+    }
+
+    public Agency findById(Long id) {
+        return agencyMapper.selectByPrimaryKey(id);
+    }
+
+    public Agency login(LoginVo vo) {
+
+        Agency agency = new Agency();
+        agency.setNickName(vo.getNickName());
+        agency.setPassword(vo.getPassword());
+        List<Agency> agencies = agencyMapper.select(agency);
+
+        if (CollectionUtils.isEmpty(agencies)){
+            return null;
+        }
+
+        return agencies.get(0);
+
+
     }
 }

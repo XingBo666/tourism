@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.tour.entity.Agency;
 import com.tour.service.AgencyService;
 import com.tour.vo.AgencyPageVo;
+import com.tour.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -55,5 +56,25 @@ public class AgencyController {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(bool);
+    }
+
+    //  根据id查询一个会员
+    @GetMapping("{id}")
+    public ResponseEntity<Agency> findById(@PathVariable("id") Long id){
+        Agency agency = agencyService.findById(id);
+        if (agency == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(agency);
+    }
+
+    //  登录的方法
+    @PostMapping("login")
+    public ResponseEntity<Agency> login (@RequestBody LoginVo vo){
+        Agency agency = agencyService.login(vo);
+        if (agency == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(agency);
     }
 }

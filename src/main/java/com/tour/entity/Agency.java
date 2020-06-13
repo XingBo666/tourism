@@ -31,4 +31,7 @@ public class Agency {
     private String nickName;
 
     private Integer level;
+
+    private String password;
+
 }

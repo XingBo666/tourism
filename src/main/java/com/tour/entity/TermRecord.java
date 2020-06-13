@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Data
 @Table( name = "tb_term_record")
@@ -20,5 +21,9 @@ public class TermRecord {
     private String agencyName;
 
     private Integer status;
+
+    private String createName;
+
+    private Date startTime;
 
 }

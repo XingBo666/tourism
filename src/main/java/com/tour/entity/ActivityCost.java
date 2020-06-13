@@ -19,4 +19,6 @@ public class ActivityCost {
     private Long agencyId;
 
     private Integer type;
+
+    private Integer money;
 }
