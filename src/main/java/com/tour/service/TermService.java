@@ -1,6 +1,5 @@
 package com.tour.service;
 
-import com.tour.entity.Activity;
 import com.tour.entity.Term;
 import com.tour.entity.TermRecord;
 import com.tour.mapper.ActivityMapper;
@@ -57,13 +56,13 @@ public class TermService {
             termRecord.setTermId(new Long((long) insert));
             termRecordService.add(termRecord);
             //  创建队伍的同时，生成一个活动，活动内容和队伍内容一致
-            Activity activity = new Activity();
-            activity.setTermId(new Long((long) insert));
-            activity.setMoney(term.getTotalBudget());
-            activity.setContent(term.getContent());
-            activity.setAccount(agencyMapper.selectByPrimaryKey(term.getCreateId()).getEmail());
-            activity.setId(null);
-            activityMapper.insert(activity);
+//            Activity activity = new Activity();
+//            activity.setTermId(new Long((long) insert));
+//            activity.setMoney(term.getTotalBudget());
+//            activity.setContent(term.getContent());
+//            activity.setAccount(agencyMapper.selectByPrimaryKey(term.getCreateId()).getEmail());
+//            activity.setId(null);
+//            activityMapper.insert(activity);
 
             insert1  = new Long((long) insert);
 
