@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table( name = "tb_activity")
 public class Activity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( generator = "JDBC" ,strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String content;

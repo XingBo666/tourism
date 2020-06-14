@@ -27,11 +27,11 @@ CREATE TABLE `tb_activity` (
   `term_id` bigint(11) DEFAULT NULL COMMENT '团队id',
   `money` int(10) DEFAULT NULL COMMENT '费用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_activity` */
 
-insert  into `tb_activity`(`id`,`content`,`account`,`term_id`,`money`) values (1,'野炊','wangyi@163.com',2,9000),(2,'踏青','aliyunCss.com',2,10000),(3,'野餐','123123@qq.com',2,4000),(4,'漫步人生路','163@qq.com',2,5000);
+insert  into `tb_activity`(`id`,`content`,`account`,`term_id`,`money`) values (1,'野炊','wangyi@163.com',2,9000),(2,'踏青','aliyunCss.com',2,10000);
 
 /*Table structure for table `tb_activity_agency` */
 
@@ -82,11 +82,11 @@ CREATE TABLE `tb_agency` (
   `level` int(1) DEFAULT NULL COMMENT '1管理员2普通用户',
   `password` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '密码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_agency` */
 
-insert  into `tb_agency`(`id`,`name`,`phone`,`sex`,`brithday`,`email`,`create_time`,`del_flag`,`nick_name`,`level`,`password`) values (1,'admin','17312345678',1,'2020-06-22 16:00:00','1232141@163.com','2020-06-12 07:04:44',0,'admin',1,'admin'),(2,'小红','18387853241',0,'2020-06-23 16:00:00','hongjiejie@aliemail.com','2020-06-13 00:47:22',0,'红姐姐',2,'xiaohong');
+insert  into `tb_agency`(`id`,`name`,`phone`,`sex`,`brithday`,`email`,`create_time`,`del_flag`,`nick_name`,`level`,`password`) values (1,'admin','17312345678',1,'2020-06-22 16:00:00','1232141@163.com','2020-06-12 07:04:44',0,'admin',1,'admin'),(2,'小红','18387853241',0,'2020-06-23 16:00:00','hongjiejie@aliemail.com','2020-06-13 00:47:22',0,'红姐姐',2,'xiaohong'),(5,'RiseAndShine','17312345678',1,'2020-06-28 16:00:00','example@qq.com','2020-06-13 23:31:44',0,'RiseAndShine',2,'123456');
 
 /*Table structure for table `tb_term` */
 
@@ -102,7 +102,7 @@ CREATE TABLE `tb_term` (
   `create_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建者昵称',
   `status` int(1) DEFAULT NULL COMMENT '0未开始，1已开始，2已结束',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_term` */
 
@@ -122,7 +122,7 @@ CREATE TABLE `tb_term_record` (
   `create_name` varchar(50) DEFAULT NULL,
   `start_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_term_record` */
 

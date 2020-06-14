@@ -2,6 +2,7 @@ package com.tour.controller;
 
 import com.tour.entity.Term;
 import com.tour.service.TermService;
+import com.tour.vo.JoinVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -28,8 +29,8 @@ public class TermController {
 
     //  添加一个队伍
     @PostMapping("")
-    public ResponseEntity<Boolean> add(@RequestBody Term term) {
-        Boolean bool = termService.add(term);
+    public ResponseEntity<Long> add(@RequestBody Term term) {
+        Long bool = termService.add(term);
         //
 
         if (bool == null){
@@ -57,4 +58,12 @@ public class TermController {
         }
         return ResponseEntity.ok(bool);
     }
-}
+
+    @PostMapping("join")
+    public ResponseEntity<Boolean> join(@RequestBody JoinVo vo){
+        Boolean bool = termService.join(vo);
+        if ( bool == null){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(bool);
+    }}

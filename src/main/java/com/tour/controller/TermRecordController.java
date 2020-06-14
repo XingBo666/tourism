@@ -2,12 +2,14 @@ package com.tour.controller;
 
 import com.tour.entity.TermRecord;
 import com.tour.service.TermRecordService;
+import com.tour.vo.ManyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("termRecord")
@@ -45,5 +47,18 @@ public class TermRecordController {
         return ResponseEntity.ok(bool);
 
     }
+
+    //  批量添加成员
+    @PostMapping("/invite")
+    public ResponseEntity<Boolean> add(@RequestBody ManyVo vo){
+        Boolean bool = termRecordService.manyAdd(vo);
+
+        if (bool == null){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(bool);
+    }
+
+
 
 }

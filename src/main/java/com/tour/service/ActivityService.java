@@ -40,8 +40,9 @@ public class ActivityService {
            activity.setTermId(vo.getTermId());
 
            //  先存主表
-           int insert = activityMapper.insert(activity);
-           //  遍历数组，存入副表
+           activityMapper.insert(activity);
+           Long insert =activity.getId();
+                   //  遍历数组，存入副表
            List<Long> ids = vo.getSelectList();
            ids.forEach(id -> {
                ActivityCost activityCost = new ActivityCost();

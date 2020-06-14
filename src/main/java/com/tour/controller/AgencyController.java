@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("agency")
 public class AgencyController {
@@ -81,11 +83,21 @@ public class AgencyController {
 
     //  会员注册功能
     @PostMapping("registry")
-    public ResponseEntity<Boolean> registry(RegistryVo vo) {
+    public ResponseEntity<Boolean> registry(@RequestBody RegistryVo vo) {
         Boolean bool = agencyService.registry(vo);
         if (bool == null){
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(bool);
+    }
+
+    //  查询所有会员，不分页，邀请的时候使用
+    @GetMapping("all")
+    public ResponseEntity<List<Agency>> all() {
+        List<Agency> agencies = agencyService.all();
+        if (CollectionUtils.isEmpty(agencies)){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(agencies);
     }
 }

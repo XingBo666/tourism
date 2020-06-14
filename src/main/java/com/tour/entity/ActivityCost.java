@@ -2,6 +2,8 @@ package com.tour.entity;
 
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 public class ActivityCost {
 
     @Id
+    @GeneratedValue( generator = "JDBC" ,strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long activityId;

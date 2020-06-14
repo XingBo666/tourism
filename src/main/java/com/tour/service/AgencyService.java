@@ -129,10 +129,15 @@ public class AgencyService {
         agency.setNickName(vo.getNickName());
         agency.setPassword(vo.getPassword());
 
+        agency.setEmail(vo.getEmail());
+        agency.setPhone(vo.getPhone());
+
         agency.setName(vo.getNickName());
         agency.setLevel(2);
         agency.setDelFlag(0);
         agency.setCreateTime(new Date());
+
+
 
         try {
             agencyMapper.insert(agency);
@@ -142,5 +147,9 @@ public class AgencyService {
         }
         return true;
 
+    }
+
+    public List<Agency> all() {
+        return agencyMapper.selectAll();
     }
 }
